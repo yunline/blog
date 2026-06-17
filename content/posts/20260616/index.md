@@ -27,8 +27,8 @@ $$
 \begin{aligned}
 \Delta V_\mathrm{px} &= V_{新} - V_{旧} \\
     &= \frac{1}{2}(e + \Delta e)^2 - \frac{1}{2}e^2 \\
-    &= \frac{1}{2} [\cancel{e^2} - 2e\Delta e + \Delta e^2 - \cancel{e^2}] \\
-    &= \frac{1}{2}(\Delta e^2 - 2e\Delta e) 
+    &= \frac{1}{2} [\cancel{e^2} + 2e\Delta e + \Delta e^2 - \cancel{e^2}] \\
+    &= \frac{1}{2}(\Delta e^2 + 2e\Delta e) 
 \end{aligned}
 $$
 
@@ -57,8 +57,8 @@ $$
 $$
 \begin{aligned}
 \Delta V_\mathrm{ln} (L) &= \sum_{i=0}^{L} \Delta V_{\mathrm{px},i} \\
-    &= \sum_{i=0}^{L} \frac{1}{2}(\Delta e^2 - 2e_i\Delta e) \\
-    &= \frac{L}{2}\Delta e^2 - \Delta e \sum_{i=0}^{L} e_i
+    &= \sum_{i=0}^{L} \frac{1}{2}(\Delta e^2 + 2e_i\Delta e) \\
+    &= \frac{L}{2}\Delta e^2 + \Delta e \sum_{i=0}^{L} e_i
 \end{aligned}
 $$
 
@@ -83,8 +83,8 @@ $$
 \begin{aligned}
 \Delta V_\mathrm{ln} &= \sum_{i \in M} \Delta V_{\mathrm{px},i}
     + \sum_{i\in Q} 0 \\
-    &= (\frac{M}{2}\Delta e^2 - \Delta e \sum_{i \in M} e_i) + 0 \\
-    &= \frac{M}{2}\Delta e^2 - \Delta e \sum_{i \in M} e_i
+    &= (\frac{M}{2}\Delta e^2 + \Delta e \sum_{i \in M} e_i) + 0 \\
+    &= \frac{M}{2}\Delta e^2 + \Delta e \sum_{i \in M} e_i
 \end{aligned}
 $$
 
@@ -97,7 +97,7 @@ $$
 代回去，就得到：
 
 $$
-\Delta V_\mathrm{ln}(L, M) = \frac{M}{2}\Delta e^2 - \Delta e \sum_{i=0}^{L} e_i
+\Delta V_\mathrm{ln}(L, M) = \frac{M}{2}\Delta e^2 + \Delta e \sum_{i=0}^{L} e_i
 $$
 
 $M$ （线段处于画面区域内的长度）怎么求？答案是累加：每有一个处于画面区内的像素，则计数加一。如此也能用前缀和算法批量处理，非常高效。此处不多赘述。
@@ -124,7 +124,7 @@ $$
 故而像素代价变化量：
 
 $$
-\Delta V_\mathrm{px} = \frac{1}{2}(\Delta e^2 - 2e\Delta e) + \frac{1}{2}K_\mathrm{I}(\Delta I^2 - 2I\Delta I)
+\Delta V_\mathrm{px} = \frac{1}{2}(\Delta e^2 + 2e\Delta e) + \frac{1}{2}K_\mathrm{I}(\Delta I^2 + 2I\Delta I)
 $$
 
 其中 $\Delta I$ 是误差积分的变化量。由于误差积分是由误差累加出来的，所以我们知道：
@@ -137,16 +137,16 @@ $$
 
 $$
 \begin{aligned}
-\Delta I^2 - 2I\Delta I &= (e + \Delta e)^2 - 2I(e + \Delta e) \\
-    &= e^2 + 2e\Delta e + \Delta e^2 - 2Ie - 2I\Delta e
+\Delta I^2 + 2I\Delta I &= (e + \Delta e)^2 + 2I(e + \Delta e) \\
+    &= e^2 + 2e\Delta e + \Delta e^2 + 2Ie + 2I\Delta e
 \end{aligned}
 $$
 
 代回：
 
 $$
-\Delta V_\mathrm{px} = \frac{1}{2}(\Delta e^2 - 2e\Delta e) 
-    + \frac{1}{2}K_\mathrm{I}(e^2 + 2e\Delta e + \Delta e^2 - 2Ie - 2I\Delta e)
+\Delta V_\mathrm{px} = \frac{1}{2}(\Delta e^2 + 2e\Delta e) 
+    + \frac{1}{2}K_\mathrm{I}(e^2 + 2e\Delta e + \Delta e^2 + 2Ie + 2I\Delta e)
 $$
 
 所以对于一整条线段，代价变化量：
@@ -154,10 +154,10 @@ $$
 $$
 \begin{aligned}
 \Delta V_\mathrm{ln} &= \sum_{i=0}^{L} \Delta V_{\mathrm{px},i}\\
-    &= (\frac{M}{2}\Delta e^2 - \Delta e \sum_{i=0}^{L} e_i) + K_\mathrm{I}(
+    &= (\frac{M}{2}\Delta e^2 + \Delta e \sum_{i=0}^{L} e_i) + K_\mathrm{I}(
         \frac{1}{2}\sum_{i=0}^{L} e_i^2 + \Delta e \sum_{i=0}^{L} e_i
-        + \frac{M}{2}\Delta e^2 - \sum_{i=0}^{L} I_ie_i 
-        - \Delta e\sum_{i=0}^{L} I_i
+        + \frac{M}{2}\Delta e^2 + \sum_{i=0}^{L} I_ie_i 
+        + \Delta e\sum_{i=0}^{L} I_i
     )
 \end{aligned}
 $$
