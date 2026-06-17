@@ -171,15 +171,19 @@ $$
 这样，光线就可以被分为垂直于镜面的分量和平行于镜面的分量：
 
 $$
-\overrightarrow{r_\parallel} = \frac{\overrightarrow{r}\cdot\overrightarrow{s}}{|\overrightarrow{s}|}\hat{s} = \frac{\overrightarrow{r}\cdot\overrightarrow{s}}{\overrightarrow{s}^2}\overrightarrow{s}\\
-\overrightarrow{r_\perp} = \frac{\overrightarrow{r}\cdot\overrightarrow{n}}{|\overrightarrow{n}|}\hat{n} = \frac{\overrightarrow{r}\cdot\overrightarrow{n}}{\overrightarrow{n}^2}\overrightarrow{n}
+\begin{align}
+\overrightarrow{r_\parallel} &= \frac{\overrightarrow{r}\cdot\overrightarrow{s}}{|\overrightarrow{s}|}\hat{s} = \frac{\overrightarrow{r}\cdot\overrightarrow{s}}{\overrightarrow{s}^2}\overrightarrow{s} \\
+\overrightarrow{r_\perp} &= \frac{\overrightarrow{r}\cdot\overrightarrow{n}}{|\overrightarrow{n}|}\hat{n} = \frac{\overrightarrow{r}\cdot\overrightarrow{n}}{\overrightarrow{n}^2}\overrightarrow{n}
+\end{align}
 $$
 
 由于 $\overrightarrow{n}$ 向量是由 $\overrightarrow{s}$ 向量重组而来，故而$\overrightarrow{n}^2 = \overrightarrow{s}^2$。我们并不在乎光线向量的长度，只在乎方向，所以可以把平行与垂直分量同时除以 $\overrightarrow{n}^2$。于是式子化简成：
 
 $$
-\overrightarrow{r_\parallel} = (\overrightarrow{r}\cdot\overrightarrow{s}) \overrightarrow{s} \\
-\overrightarrow{r_\perp} = (\overrightarrow{r}\cdot\overrightarrow{n}) \overrightarrow{n}
+\begin{align}
+\overrightarrow{r_\parallel} &= (\overrightarrow{r}\cdot\overrightarrow{s}) \overrightarrow{s} \\
+\overrightarrow{r_\perp} &= (\overrightarrow{r}\cdot\overrightarrow{n}) \overrightarrow{n}
+\end{align}
 $$
 
 光线撞到镜面，则垂直于镜面的分量被完全翻转，而平行于镜面的分量毫无变化，所以：
